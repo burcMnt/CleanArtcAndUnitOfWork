@@ -13,6 +13,6 @@ namespace ApplicationCore.Entities
         public string VehicleName { get; set; }
         public string VehiclePlate { get; set; }
 
-        public Container Container { get; set; }
+        public List<Container> Containers { get; set; }
     }
 }
