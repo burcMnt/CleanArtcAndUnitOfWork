@@ -9,5 +9,6 @@ namespace ApplicationCore.Interfaces.Repository
 {
     public interface IContainerRepository :IAsyncGenericRepository<Container>
     {
+        List<Container> GetAllWithVehicle();
     }
 }
