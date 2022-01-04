@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities;
+using ApplicationCore.Interfaces.Repository;
 using ApplicationCore.Interfaces.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -34,6 +35,18 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
             return await Task.FromResult(Ok(vehicle));
+        }
+
+        [Route("VehicleWithContainers")]
+        [HttpGet]
+        public async Task<IActionResult> GetVehicleWithContainer(int id)
+        {
+            Vehicle vehicle = await _unitOfWork.Vehicles.GetVehicleWithContainerAsync(id);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+            return Ok(vehicle);
         }
 
         //You can use this HttpPost request to create new vehicle's object.

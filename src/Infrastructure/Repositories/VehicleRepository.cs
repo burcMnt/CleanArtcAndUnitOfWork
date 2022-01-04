@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Entities;
 using ApplicationCore.Interfaces.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,24 @@ namespace Infrastructure.Repositories
 {
     public class VehicleRepository : GenericRepository<Vehicle> , IVehicleRepository
     {
+        private readonly ApplicationDbContext dbContext;
+
         public VehicleRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+            this.dbContext = dbContext;
+        }
 
+        public async Task<Vehicle> GetVehicleWithContainerAsync(int id)
+        {
+            Vehicle vehicle =  dbContext
+                
+                .Vehicles.Include(x => x.Containers).FirstOrDefault(x => x.Id == id);
+            return await Task.FromResult(vehicle);
+        }
+
+        public Task<Vehicle> GetVehicleWithContainerClusterAsync(int id, int N)
+        {
+            throw new NotImplementedException();
         }
     }
 }

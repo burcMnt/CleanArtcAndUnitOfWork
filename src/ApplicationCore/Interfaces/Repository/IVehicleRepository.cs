@@ -9,5 +9,7 @@ namespace ApplicationCore.Interfaces.Repository
 {
     public interface IVehicleRepository :IAsyncGenericRepository<Vehicle>
     {
+        Task<Vehicle> GetVehicleWithContainerAsync(int id);
+        Task<Vehicle> GetVehicleWithContainerClusterAsync(int id,int N);
     }
 }
