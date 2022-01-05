@@ -101,5 +101,12 @@ namespace WebAPI.Controllers
             _unitOfWork.Complete();
             return NoContent();
         }
+
+        [Route("GetContanerClusters")]
+        [HttpGet]
+        public async Task<IActionResult> GetClusters(int id, int N)
+        {
+            return Ok(await _unitOfWork.Containers.GetVehicleWithContainerClusterAsync(id, N));
+        }
     }
 }

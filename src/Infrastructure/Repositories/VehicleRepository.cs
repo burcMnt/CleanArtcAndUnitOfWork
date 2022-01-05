@@ -20,15 +20,10 @@ namespace Infrastructure.Repositories
 
         public async Task<Vehicle> GetVehicleWithContainerAsync(int id)
         {
-            Vehicle vehicle =  dbContext
-                
-                .Vehicles.Include(x => x.Containers).FirstOrDefault(x => x.Id == id);
+            Vehicle vehicle =  dbContext.Vehicles.Include(x => x.Containers).FirstOrDefault(x => x.Id == id);
             return await Task.FromResult(vehicle);
         }
 
-        public Task<Vehicle> GetVehicleWithContainerClusterAsync(int id, int N)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
